@@ -1,31 +1,24 @@
 import React from "react";
 import { geolocated } from "react-geolocated";
 import axios from "axios";
+import "../styles/component.css";
 
 class GeoLocation extends React.Component {
   gotCoords = false;
-  country = ""
   state = {
-    weather: {}
+    weather: {},
+    country: ""
   }
-  // dj0yJmk9N0RuTTRmdk5pUEdXJmQ9WVdrOU1YQkpORWx5TjJrbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PTJh - Client ID
-  // 0a8a8f0115b5cf309ca80795cc47c3d06d18e016 - Secret
 
   componentDidUpdate() {
-    // axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${this.props.coords.latitude}&lon=${this.props.coords.longitude}&appid=2d1b182ac5b3281d131a784daf7650dd`)
-    //   .then(res => {
-    //     const weather = res.data;
-    //     this.setState({ weather });
-    //   })
     if (this.props.isGeolocationAvailable && !this.gotCoords) {
-      console.log(this.props.coords);
       if (this.props.coords !== null) {
         axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${this.props.coords.latitude}&lon=${this.props.coords.longitude}&appid=997969ab33d6a605da62ceaafabcf644`)
           .then(res => {
             const weather = res.data;
-            this.setState({ weather });
             console.log(weather)
-            this.country = this.state.weather.sys.country;
+            this.setState({ weather: weather, country: weather.sys.country });
+            console.log(this.state)
           })
         this.gotCoords = true;
       }
@@ -39,8 +32,8 @@ class GeoLocation extends React.Component {
       <div>Geolocation is not enabled</div>
     ) : this.props.coords ? (
       <div>
-        {this.state.weather.name}
-        {this.country}
+        <h1>{this.state.weather.name}</h1>
+        <h1 className="weight-light small-font">{this.state.country}</h1>
       </div>
     ) : (
             <div>Getting the location data...</div >
