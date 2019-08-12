@@ -16,7 +16,7 @@ class Header extends Component {
           <h1 className="weight-light small-font">08/10/2019</h1>
         </div>
         <div className="row">
-          <h1 className="weight-light">
+          <h1 className="weight-light small-font">
             <Geolocated></Geolocated>
           </h1>
         </div>

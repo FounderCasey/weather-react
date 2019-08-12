@@ -1,0 +1,16 @@
+.container {
+  background: #fff;
+  height: 150px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.item {}
+
+#sun {
+  margin: 0 auto;
+  height: 100px;
+  width: 100px;
+  background: linear-gradient(135deg, #fff1a5, #ffe96f);
+  border-radius: 100%;
+}
